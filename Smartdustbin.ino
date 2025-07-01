@@ -7,7 +7,7 @@
 //3. What is the Arduino pin connected to the signal pin of servo motor
 //4. What is the Maximum distance threshold for triggering servo (in centimeters).
 
-//IMPORTANT: You will not be able to see any preview (Sorry for the inconvenience) because you will need to use ARDUINO IDE and upload it to your servo motor and arduino nano.
+//IMPORTANT: You will not be able to see any preview (Sorry for the inconvenience) because you will need to use ARDUINO IDE and upload it to your servo motor and ARDUINO UNO.
  I will post where you can find it in another document. But if you would like to use a guide, you can go to www.roboarmy.in and you can also get a kit. 
 
 #include <Servo.h>
