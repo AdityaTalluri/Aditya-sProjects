@@ -1,14 +1,4 @@
-//Hello there, and welcome to my code! My name is Aditya, and I have made a smart dustbin's code in C++ and have used an Arduino Uno Board. This is a very simple code,
-  in which you will find everything you need to operate a smart dustbin, and you can change and edit your code (Not Here!)
-  In this code, you will find:
-
-//1. Which Arduino pin is to be connected to the trigger pin of ultrasonic sensor
-//2. Which Arduino pin is connected to the echo pin of the ultrasonic sensor
-//3. What is the Arduino pin connected to the signal pin of servo motor
-//4. What is the Maximum distance threshold for triggering servo (in centimeters).
-
-//IMPORTANT: You will not be able to see any preview (Sorry for the inconvenience) because you will need to use ARDUINO IDE and upload it to your servo motor and ARDUINO UNO.
- I will post where you can find it in another document. But if you would like to use a guide, you can go to www.roboarmy.in and you can also get a kit. 
+//Welcome to my code! I have made it in C++ and using an Arduino Uno Board.
 
 #include <Servo.h>
 
@@ -34,11 +24,11 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(TRIGGER_PIN, LOW);
   duration = pulseIn(ECHO_PIN, HIGH);
-  distance = (duration / 2) / 20.1; // Calculate distance in centimeters
+  distance = (duration / 2) / 29.1; // Calculate distance in centimeters
   
   if (distance <= MAX_DISTANCE) {
     // If object is within range, open the lid
-    servo.write(80); // 70 degrees position (adjust as needed)
+    servo.write(70); // 70 degrees position (adjust as needed)
     delay(1000); // Wait for 1 second
   } else {
     // If no object is detected, close the lid
@@ -51,7 +41,4 @@ void loop() {
   
   delay(10); // Wait for 10 milliseconds before taking the next reading 
 }
-
-
-
 
