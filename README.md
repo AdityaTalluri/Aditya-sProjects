@@ -1,35 +1,75 @@
-# 🏎️ Go Kart Mayhem
+# 🤖 Arduino Smart Lid with Ultrasonic Sensor & Servo
 
-A fast-paced, browser-based Go Karting game built using pure HTML, CSS, and JavaScript. Smash through levels, rack up points, and dominate the track — right from your browser.
+This project uses an Arduino Uno, an ultrasonic distance sensor (HC-SR04), and a servo motor to create a **smart lid system**. When an object (like your hand) is detected within a certain range, the servo opens the lid. If nothing is detected, it automatically closes.
 
-## 🎮 Gameplay
+## 📦 Components Required
 
-- Control your kart using **WASD** keys
-- Race through **multiple levels**, each with its own layout and challenge
-- Earn **game points** based on performance
-- Progress gets harder — so get good 🧠💨
+- Arduino Uno
+- HC-SR04 Ultrasonic Sensor
+- Servo Motor (SG90 or similar)
+- Jumper Wires
+- Breadboard (optional)
+- USB cable (for power + uploading code)
 
-## 🚀 Features
+## 🔌 Pin Connections
 
-- 💻 Made with 100% vanilla HTML, CSS & JS — No need to install libraries
-- 🧠 Level system with increasing difficulty
-- 🏁 Score system to keep things competitive
-- 🎨 Smooth visuals and arcade-style gameplay
+| Component         | Arduino Pin |
+|------------------|-------------|
+| Ultrasonic Trigger | D9          |
+| Ultrasonic Echo    | D10         |
+| Servo Signal       | D11         |
+| VCC (All)          | 5V          |
+| GND (All)          | GND         |
 
-## 🕹️ Controls
+## 🧠 How It Works
 
-| Key | Action       |
-|-----|--------------|
-| W   | Accelerate   |
-| A   | Turn Left    |
-| S   | Brake/Reverse|
-| D   | Turn Right   |
+1. The ultrasonic sensor checks for nearby objects.
+2. If an object is within **20 cm**, the servo rotates to **70°**, opening the lid.
+3. If no object is detected, the servo rotates to **0°**, closing the lid.
+4. Distance is printed to the **Serial Monitor** for debugging.
 
-## 🛠️ How to Run
+## 🖥️ Arduino Code
 
-1. **Clone or download** the project
-2. Open the folder in **VS Code**
-3. Open `index.html` in your browser (you can use Live Server or just drag-drop into the browser)
-4. Boom. You're racing.
+```cpp
+#include <Servo.h>
+
+#define TRIGGER_PIN  9
+#define ECHO_PIN     10
+#define SERVO_PIN    11
+#define MAX_DISTANCE 20
+
+Servo servo;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(TRIGGER_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+  servo.attach(SERVO_PIN);
+}
+
+void loop() {
+  long duration, distance;
+  digitalWrite(TRIGGER_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIGGER_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIGGER_PIN, LOW);
+  duration = pulseIn(ECHO_PIN, HIGH);
+  distance = (duration / 2) / 29.1;
+
+  if (distance <= MAX_DISTANCE) {
+    servo.write(70); // Open
+    delay(1000);
+  } else {
+    servo.write(0); // Close
+  }
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  delay(10);
+}
+
 
 
