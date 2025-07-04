@@ -11,7 +11,7 @@ A fast-paced, browser-based Go Karting game built using pure HTML, CSS, and Java
 
 ## 🚀 Features
 
-- 💻 Made with 100% vanilla HTML, CSS & JS — no libraries, no fluff
+- 💻 Made with 100% vanilla HTML, CSS & JS — No need to install libraries
 - 🧠 Level system with increasing difficulty
 - 🏁 Score system to keep things competitive
 - 🎨 Smooth visuals and arcade-style gameplay
@@ -32,4 +32,4 @@ A fast-paced, browser-based Go Karting game built using pure HTML, CSS, and Java
 3. Open `index.html` in your browser (you can use Live Server or just drag-drop into the browser)
 4. Boom. You're racing.
 
-## 📁 File Structure
+
